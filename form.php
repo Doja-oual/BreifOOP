@@ -1,20 +1,34 @@
 
 <?php
 //Inclure le fichier de la classe Database
-require_once 'config.php';
+require_once 'config/config.php';
+require_once 'players.php';
+
 
 // Créer une instance de la classe Database
 $database = new Database();
 
 // Obtenir la connexion
 $db = $database->getConnection();
+$player= new Player($db);
 
 // Vérifier si la connexion est établie
-if ($db) {
-    echo "Connexion réussie!";
-} else {
-    echo "Erreur de connexion.";
+// if ($db) {
+//     echo "Connexion réussie!";
+// } else {
+//     echo "Erreur de connexion.";
+// }
+
+if(isset($_POST['submit'])){
+  $player->create($_POST);
 }
+
+// if(isset($_POST['update'])){
+//   $player->update($_POST['id'],$_POST);
+// }
+// if(isset($_POST['delete'])){
+//   $player->update($_POST['id']);
+// }
 
 
 ?>
@@ -25,13 +39,13 @@ if ($db) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../src/style.css" />
+    <link rel="stylesheet" href="src/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   </head>
   <body>
     <section class="form-content">
-        <form id="form-content">
+        <form id="form-content" method="POST">
           <div class="input-groups">
             <div class="input-groups-flex1">
               <!--name-->
@@ -141,8 +155,7 @@ if ($db) {
               
             </div>
             
-              <!-- <input type="submit" value="add player" class="btn" /> -->
-              <button class="btn" id="add__player">Add player</button>
+               <input type="submit" name="submit" value="add player" class="btn" /> 
               
           
             
