@@ -16,8 +16,19 @@ class Players{
         return $d;
 
      }
+     public function Modifie($table,$id,$data){
+        $U=Model::update($table,$id,$data);
+        return $U;
+
+     }
+     public function supprime($table,$id){
+        $S=Model::delete($table,$id);
+        return $S;
+     }
+
 
 }
+
 
  
 
@@ -43,6 +54,20 @@ $e=$player->creat('joueur',[
 
 var_dump($e);
 
+$u=$player->Modifie('joueur',28,[
+    'JoueureName' => 'ibrahim',
+        'Position' => 'Attaquant',
+        'Rating' => 95,
+        'Pace' => 91,
+        'Shooting' => 93,
+        'Passing' => 85,
+        'Dribbling' => 90,
+        'Defending' => 42,
+        'Physical' => 78,
+]);
+
+
+$s=$player->supprime('joueur',19);
 
 
 
