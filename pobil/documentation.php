@@ -114,7 +114,19 @@ $user->setName("khadija");
  abstract class parentClass{
     abstract public function SomeMethode();
  }
+// exemple 
 
+abstract class backAccount{
+  protected $balance;
+  protected $accoutOwner;
+
+  function __construct($balance,$name){
+    $this->balance= $balance;
+    $this->accoutOwner=$name;
+  }
+
+  
+}
 ?>
 
 

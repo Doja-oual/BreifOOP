@@ -1,23 +1,25 @@
 <?php
 
 class Database {
-    private $host = "localhost";
-    private $db_name = "players";
-    private $username = "root";
-    private $password = "";
-    public $conn;
+    private static $host = "localhost";
+    private static $db_name = "players";
+    private static $username = "root";
+    private static $password = "";
+    public static $conn;
 
-    public function getConnection() {
-        $this->conn = null;
+    public static function getConnection() {
+        
         try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->exec("set names utf8");
+            self::$conn = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$db_name, self::$username, self::$password);
+            self::$conn->exec("set names utf8");
+            echo "works";
         } catch(PDOException $exception) {
             echo "Erreur de connexion: " . $exception->getMessage();
         }
-        return $this->conn;
+        return self::$conn;
     }
 }
-
+$conn=new Database();
+$conn->getConnection();
 
 ?>
